@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <field id="gateway_entorno" translate="label comment tooltip" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>Redsys Environment</label>
+        <comment>Remember not to activate the "Sandbox" mode in your production environment, otherwise unwanted sales may occur. More information on how to test is available on our pagosOnline website</comment>
+        <tooltip>When the module is configured as "Sandbox" mode, the operations have no accounting effect</tooltip>
+        <source_model>Omitsis\RedsysGooglePay\Model\Config\Source\Redsys\Entornoptions</source_model>
+        <config_path>payment/gpay/gateway_entorno</config_path>
+        <depends>
+            <field id="gateway">redsys</field>
+        </depends>
+    </field>
+    <field id="gateway_merchantName" translate="label" sortOrder="6" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Name of business</label>
+        <config_path>payment/gpay/gateway_merchantName</config_path>
+        <depends>
+            <field id="gateway">redsys</field>
+        </depends>
+    </field>
+    <field id="gateway_merchantOrigin" translate="label comment" sortOrder="7" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Url of the business</label>
+        <config_path>payment/gpay/gateway_merchantOrigin</config_path>
+        <comment>Merchant URL</comment>
+        <depends>
+            <field id="gateway">redsys</field>
+        </depends>
+    </field>
+    <field id="gateway_merchantId" translate="label tooltip comment" sortOrder="8" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Number of the business</label>
+        <tooltip>The business number, also called FUC, is a number that identifies your business and must have been provided to you by your bank</tooltip>
+        <config_path>payment/gpay/gateway_merchantId</config_path>
+        <comment>FUC code</comment>
+        <depends>
+            <field id="gateway">redsys</field>
+        </depends>
+    </field>
+    <field id="gateway_terminal" translate="label tooltip" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Terminal number</label>
+        <tooltip>The terminal number is the number that identifies the terminal within your business and must have been provided to you by your bank</tooltip>
+        <config_path>payment/gpay/gateway_terminal</config_path>
+        <depends>
+            <field id="gateway">redsys</field>
+        </depends>
+    </field>
+    <field id="gateway_clave256" translate="label comment tooltip" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>SHA-256 Encryption Key</label>
+        <comment>For testing in the Sandbox environment, you can use: sq7HjrUOBfKmC576ILgskD5srU870gJ7 or the one provided by your bank</comment>
+        <tooltip>This password allows you to sign all transactions sent by the module and must have been provided by your bank. Remember to keep it in a safe place.</tooltip>
+        <config_path>payment/gpay/gateway_clave256</config_path>
+        <depends>
+            <field id="gateway">redsys</field>
+        </depends>
+    </field>
+    <field id="gateway_tipopago" translate="label" type="select" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>Transaction type</label>
+        <source_model>Omitsis\RedsysGooglePay\Model\Config\Source\Redsys\Pagoptions</source_model>
+        <config_path>payment/gpay/gateway_tipopago</config_path>
+        <depends>
+            <field id="gateway">redsys</field>
+        </depends>
+    </field>
+    <field id="gateway_genpedido" translate="label comment tooltip" type="select" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Order number generation method</label>
+        <comment>This option does not modify the way in which the order is identified in your Backoffice, but the order number (adapted to always occupy twelve digits) that is sent to Redsys to identify the operation</comment>
+        <tooltip>Configure how the order number to be sent to Redsys to identify the transaction will be generated in the Virtual POS Administration Portal</tooltip>
+        <source_model>Omitsis\RedsysGooglePay\Model\Config\Source\Redsys\Npedoptions</source_model>
+        <config_path>payment/gpay/gateway_genpedido</config_path>
+        <depends>
+            <field id="gateway">redsys</field>
+        </depends>
+    </field>
+    <field id="gateway_pedidoextendido" translate="label comment" type="select" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>The terminal allows extended order number</label>
+        <comment>Check this option if your terminal is configured to support extended order numbers. This is useful for stores whose number of orders may exceed the maximum twelve positions of a standard order number. Remember to ask your bank to activate this setting on your terminal before checking this option.</comment>
+        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+        <config_path>payment/gpay/gateway_pedidoextendido</config_path>
+        <depends>
+            <field id="gateway">redsys</field>
+        </depends>
+    </field>
+</include>

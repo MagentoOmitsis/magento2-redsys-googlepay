@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <gpay>
+                <active>0</active>
+                <title>Pagar con Google Pay</title>
+                <order_status>pending</order_status>
+                <environment>TEST</environment>
+                <estado>processing</estado>
+                <errorpago>1</errorpago>
+                <genpedido>0</genpedido>
+                <logactivo>1</logactivo>
+                <payment_action>true</payment_action>
+                <model>Omitsis\RedsysGooglePay\Model\Payment\GPay</model>
+            </gpay>
+        </payment>
+    </default>
+</config>

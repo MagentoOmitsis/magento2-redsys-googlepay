@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment">
+            <group id="gpay" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Redsys · Pay with Google Pay</label>
+                <!--GENERAL FIELDS-->
+                <group id="gpay_options" translate="label" type="group" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>General Settings</label>
+                    <field id="active" translate="label" sortOrder="1" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Enable</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>payment/gpay/active</config_path>
+                    </field>
+                    <field id="estado" translate="label tooltip" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Order status when payment is verified</label>
+                        <tooltip>Here you can configure the status in which the order will be displayed in the "Orders" section of your backoffice once the module receives the notification that the payment has been successful</tooltip>
+                        <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
+                        <config_path>payment/gpay/estado</config_path>
+                    </field>
+                    <field id="errorpago" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Maintain order if an error occurs</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>payment/gpay/errorpago</config_path>
+                    </field>
+                    <field id="logactivo" translate="label tooltip comment" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Enable logs</label>
+                        <tooltip>If you enable this option, logs of the processes performed by the module will be saved inside the store logs folder, usually in /var/log</tooltip>
+                        <comment>When reporting any incident, complete logs are very useful to detect the problem</comment>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>payment/gpay/logactivo</config_path>
+                    </field>
+                </group>
+                <!--GOOGLE FIELDS-->
+                <group id="gpay_google_credentials" translate="label" type="group" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google Pay Configuration</label>
+                    <field id="environment" translate="label" sortOrder="1" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Google Environment</label>
+                        <source_model>Omitsis\RedsysGooglePay\Model\Config\Source\Environment</source_model>
+                        <config_path>payment/gpay/environment</config_path>
+                    </field>
+                    <field id="merchantId" translate="label commnet" sortOrder="2" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Google Merchant Id</label>
+                        <config_path>payment/gpay/merchantId</config_path>
+                        <comment>Leave blank if environment is in TEST mode</comment>
+                    </field>
+                    <field id="cc_types" translate="label" type="multiselect" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Allowed cards</label>
+                        <source_model>Omitsis\RedsysGooglePay\Model\Config\Source\Cctype</source_model>
+                        <config_path>payment/gpay/cc_types</config_path>
+                    </field>
+                </group>
+                <!--GATEWAY FIELDS-->
+                <group id="gpay_gateway_credentials" translate="label" type="group" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Gateway Configuration</label>
+                    <field id="gateway" translate="label commnet" sortOrder="1" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Gateway</label>
+                        <source_model>Omitsis\RedsysGooglePay\Model\Config\Source\GatewayName</source_model>
+                        <config_path>payment/gpay/gateway</config_path>
+                        <comment>List of gateways https://developers.google.com/pay/api/web/guides/tutorial#tokenization</comment>
+                    </field>
+                    <include path="Omitsis_RedsysGooglePay::system/redsys.xml"/>
+                </group>
+            </group>
+        </section>
+    </system>
+</config>

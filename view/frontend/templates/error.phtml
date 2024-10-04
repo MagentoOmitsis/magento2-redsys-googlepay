@@ -1,0 +1,33 @@
+<?php
+    switch ($this->getEstado()){
+        case 0:
+            ?>
+            <b><?php echo __('The way you are trying to access the notification system is not correct.'); ?></b><br/>
+            <?php echo __('You may be seeing this message for two reasons:'); ?><br/><br/>
+            <ol>
+                <li><?php echo __('The merchant hosting uses redirection internally.'); ?></li>
+                <li><?php echo __('You are trying to navigate this page; this page is not accessible to enter directly from the web browser.'); ?></li>
+            </ol>
+            <?php echo __('If you have arrived here redirected from the payment gateway, please contact the merchant support.'); ?>
+            <?php
+            break;
+        case 1:
+        case 2:
+            ?>
+            <?php echo __('An unknown error has occurred.'); ?><br/>
+            <?php echo __('Try another payment method.'); ?><br/>
+            <?php
+            break;
+        default:
+            ?>
+            <b><?php echo __('Estado no reconocido.'); ?></b><br/>
+            <?php
+            break;
+    }
+?>
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        hyva.setCookie('mage-cache-sessid', '', -1, true); // remove the cookie
+        window.dispatchEvent(new CustomEvent("reload-customer-section-data")); // reload the data
+    });
+</script>
