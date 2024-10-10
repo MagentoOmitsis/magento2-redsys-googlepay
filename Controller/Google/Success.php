@@ -70,6 +70,7 @@ class Success implements HttpGetActionInterface
 
         $order = $this->session->getLastRealOrder();
         $orderId = $order->getId();
+        $orderIncrementId = $order->getIncrementId();
 
         $this->logger->info('############################################');
         
@@ -79,7 +80,7 @@ class Success implements HttpGetActionInterface
 
             $orderItems = $order->getAllItems();
             $amount = CurrencyManager::GetAmount($order->getTotalDue(), CurrencyManager::GetCurrency());
-            $numpedido = RedsysLibrary::generaNumeroPedido($orderId, $this->redsysModel->getConfigData('gateway_genpedido'), $this->redsysModel->getConfigData('gateway_pedidoextendido'));
+            $numpedido = RedsysLibrary::generaNumeroPedido($orderIncrementId, $this->redsysModel->getConfigData('gateway_genpedido'), $this->redsysModel->getConfigData('gateway_pedidoextendido'));
             $titular = $order->getCustomerFirstname() . " " . $order->getCustomerLastname() . " / " . __("Correo") . ": " . $order->getCustomerEmail();
 
             $productdescription = "";
